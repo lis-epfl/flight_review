@@ -7,6 +7,7 @@ from scipy.interpolate import interp1d
 from config import plot_width, plot_config, colors3
 from helper import get_flight_mode_changes
 from pid_analysis import Trace, plot_pid_response
+from plot_custom import custom_plots
 from plotting import *
 from plotted_tables import get_heading_html
 
@@ -187,4 +188,5 @@ The analysis may take a while...
                 plots.insert(0, column(div, width=int(plot_width*0.9)))
                 pid_analysis_error = True
 
+    plots = custom_plots(plots)
     return plots

@@ -2,20 +2,21 @@
 
 from html import escape
 
-from bokeh.layouts import column
-from bokeh.models import Range1d
-from bokeh.models.widgets import Button
 from bokeh.io import curdoc
+from bokeh.layouts import column
+from bokeh.models.widgets import Button
 
 from config import *
 from helper import *
 from leaflet import ulog_to_polyline
-from plotting import *
+from plot_custom import custom_plots
 from plotted_tables import (
     get_logged_messages, get_changed_parameters,
     get_info_table_html, get_heading_html, get_error_labels_html,
     get_hardfault_html, get_corrupt_log_html
-    )
+)
+from plotting import *
+
 
 #pylint: disable=cell-var-from-loop, undefined-loop-variable,
 #pylint: disable=consider-using-enumerate,too-many-statements
@@ -899,4 +900,5 @@ def generate_plots(ulog, px4_ulog, db_data, vehicle_data, link_to_3d_page,
 
     curdoc().template_variables['plots'] = jinja_plot_data
 
+    plots = custom_plots(plots)
     return plots
